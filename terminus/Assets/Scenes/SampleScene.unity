@@ -308,7 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed:
     UseConstant: 1
-    ConstantValue: 0
+    ConstantValue: 5
     Variable: {fileID: 0}
   playerControls:
     m_Name: Player Controls
