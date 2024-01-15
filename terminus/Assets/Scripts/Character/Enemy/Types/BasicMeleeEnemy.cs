@@ -11,6 +11,7 @@ public class BasicMeleeEnemy : MonoBehaviour, IEnemy
     private GameObject playerGO;
     private float health;
     [SerializeField] private float speed;
+    [SerializeField] private float damage;
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +23,7 @@ public class BasicMeleeEnemy : MonoBehaviour, IEnemy
     void Update()
     {
         float dist = Vector3.Distance(playerGO.transform.position, gameObject.transform.position);
-        if (dist < 2) { Attack(); }
-        else { Move(); }
-    }
-
-    public void Attack()
-    {
-        return;
+        Move();
     }
 
     public void TakeDamage(float dmgVal)
@@ -40,7 +35,7 @@ public class BasicMeleeEnemy : MonoBehaviour, IEnemy
         if (health < 1) { Die(); }
     }
 
-    public void Move()
+    private void Move()
     {
         Vector3 moveVector = playerGO.transform.position - gameObject.transform.position;
         gameObject.transform.position += moveVector.normalized * speed;
@@ -50,5 +45,14 @@ public class BasicMeleeEnemy : MonoBehaviour, IEnemy
     {
         Debug.Log(gameObject.name + " died");
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player")
+        {
+            PlayerStats pStats = collision.collider.GetComponent<PlayerStats>();
+            pStats.TakeDamage(damage);
+        }
     }
 }

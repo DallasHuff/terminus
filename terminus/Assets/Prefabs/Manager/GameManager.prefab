@@ -48,7 +48,4 @@ MonoBehaviour:
   meleeEnemy: {fileID: 795738815777616287, guid: cc0aa3dd796a9324ebb42478fee93a68, type: 3}
   rangedEnemy: {fileID: 795738815777616287, guid: cc0aa3dd796a9324ebb42478fee93a68, type: 3}
   spawnSpeed: 1
-  minX: 5
-  maxX: 5
-  minY: 5
-  maxY: 5
+  spawnDistance: 10
