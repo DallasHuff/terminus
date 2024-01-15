@@ -19,5 +19,6 @@ public class PlayerStats : MonoBehaviour
     private void Die()
     {
         Debug.Log(transform + "died");
+        //
     }
 }
