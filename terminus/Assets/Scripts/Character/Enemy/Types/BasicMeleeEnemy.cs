@@ -10,12 +10,12 @@ public class BasicMeleeEnemy : MonoBehaviour, IEnemy
     private String player = "Player";
     private GameObject playerGO;
     private float health;
-    private float speed;
+    [SerializeField] private float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerGO = GameObject.Find("Player");
+        playerGO = GameObject.Find(player);
     }
 
     // Update is called once per frame
@@ -43,7 +43,7 @@ public class BasicMeleeEnemy : MonoBehaviour, IEnemy
     public void Move()
     {
         Vector3 moveVector = playerGO.transform.position - gameObject.transform.position;
-        gameObject.transform.position += moveVector.normalized;
+        gameObject.transform.position += moveVector.normalized * speed;
     }
 
     private void Die()
