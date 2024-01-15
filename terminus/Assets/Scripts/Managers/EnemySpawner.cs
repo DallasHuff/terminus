@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -8,10 +9,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject meleeEnemy;
     [SerializeField] GameObject rangedEnemy;
     [SerializeField] float spawnSpeed;
-    [SerializeField] float minX;
-    [SerializeField] float maxX;
-    [SerializeField] float minY;
-    [SerializeField] float maxY;
+    [SerializeField] float spawnDistance;
+    TextMeshProUGUI textMeshProUGUI;
     private float timeSinceSpawn;
     void Start()
     {
@@ -31,13 +30,14 @@ public class EnemySpawner : MonoBehaviour
             Spawn(meleeEnemy);
         }
         timeSinceSpawn += Time.deltaTime;
+
+
     }
 
     private void Spawn(GameObject enemy)
     {
-        Debug.Log("Spawning");
-        Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0);
-        Vector3 position = playerTrans.position + randomPosition;
+        Vector3 randomPosition = new Vector3(Random.Range(-100, 100), Random.Range(-100, 100), 0);
+        Vector3 position = playerTrans.position + (randomPosition.normalized * spawnDistance);
         Instantiate(enemy, position, Quaternion.identity);
     }
 }
